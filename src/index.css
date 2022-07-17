@@ -7,7 +7,7 @@ body {
 }
 
 .Card {
-	@apply w-[40rem] h-[50rem] bg-slate-100 rounded-3xl overflow-hidden;
+	@apply w-[40rem] h-[50rem] bg-slate-100 rounded-3xl overflow-hidden relative;
 }
 
 .Avatar {
@@ -15,6 +15,27 @@ body {
 }
 
 .Avatar img {
-	@apply h-[10rem] w-[10rem] rounded-full border-8 border-slate-100
+	@apply h-[10rem] w-[10rem] rounded-full border-8 border-slate-100 overflow-clip
 	top-full left-1/2 absolute -translate-x-1/2 -translate-y-1/2;
+}
+
+.field {
+	@apply border-b-2 min-w-[7rem] w-fit italic;
+}
+
+.Info {
+	@apply w-full h-full px-4;
+}
+
+label {
+	@apply font-medium;
+}
+
+.refresh {
+	@apply w-6 h-6 z-10 text-white cursor-pointer
+	absolute right-3 top-3;
+}
+
+h2 {
+	@apply font-bold text-xl text-center mt-2;
 }
