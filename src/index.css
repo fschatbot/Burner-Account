@@ -39,3 +39,8 @@ label {
 h2 {
 	@apply font-bold text-xl text-center mt-2;
 }
+
+a.links {
+	@apply underline font-medium mx-1
+	text-sky-500 visited:text-purple-500;
+}

@@ -13,9 +13,9 @@ function getPersonInfo() {
 	let fullName = `${gender === "Male" ? "Mr." : "Mrs."} ${firstName} ${secondName}`;
 	let email = faker.internet.email(firstName, secondName);
 	let phoneNumber = faker.phone.number("+91 ### ### ####");
-
+	let SuggPass = faker.internet.password(20);
 	console.log("New Personal Information Fetched");
-	return { gender, firstName, secondName, email, fullName, phoneNumber };
+	return { gender, firstName, secondName, email, fullName, phoneNumber, SuggPass };
 }
 
 function InfoLabel({ title, value }) {
@@ -24,6 +24,14 @@ function InfoLabel({ title, value }) {
 			<label>{title}: </label>
 			<input type="text" className="field" disabled={true} defaultValue={value} />
 		</div>
+	);
+}
+
+function Link({ link, text }) {
+	return (
+		<a href={link} target="_blank" rel="noreferrer" className="links">
+			{text}
+		</a>
 	);
 }
 
@@ -50,7 +58,15 @@ function ProfileCard() {
 				<InfoLabel title="Gender" value={person.gender} />
 				<h2>Email</h2>
 				<InfoLabel title="Email" value={person.email} />
-				<h3>Emails (0):</h3>
+				<InfoLabel title="Suggested Password" value={person.SuggPass} />
+				<h4 className="italic text-gray-700">
+					* For a working email, please visit any one site:
+					<Link text="Site 1" link="https://mail.gw/en/" />,
+					<Link text="Site 2" link="https://temp-mail.org/en/10minutemail" />,
+					<Link text="Site 3" link="https://10minutesemail.net/" />
+					<Link text="Site 4" link="https://www.minuteinbox.com/" />,
+					<Link text="Site 5" link="https://10minutemail.com/" />*
+				</h4>
 
 				<InfoLabel title="Phone Number" value={person.phoneNumber} />
 				<h2>Credit Card Information</h2>
@@ -61,8 +77,6 @@ function ProfileCard() {
 		</div>
 	);
 }
-
-// https://10minutemail.com/ has an API, use that to generate temporary emails
 
 function App() {
 	return <>{<ProfileCard />}</>;
