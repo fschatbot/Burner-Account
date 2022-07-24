@@ -14,8 +14,14 @@ function getPersonInfo() {
 	let email = faker.internet.email(firstName, secondName);
 	let phoneNumber = faker.phone.number("+91 ### ### ####");
 	let SuggPass = faker.internet.password(20);
+
+	let cardIssuer = faker.finance.creditCardIssuer();
+	let cardNumber = faker.finance.creditCardNumber(cardIssuer);
+	let cardCVV = faker.finance.creditCardCVV();
+	let cardExpiry = "Lorem" || faker.finance.creditCardExpiry();
+
 	console.log("New Personal Information Fetched");
-	return { gender, firstName, secondName, email, fullName, phoneNumber, SuggPass };
+	return { gender, firstName, secondName, email, fullName, phoneNumber, SuggPass, cardIssuer, cardNumber, cardCVV, cardExpiry };
 }
 
 function InfoLabel({ title, value }) {
@@ -70,9 +76,10 @@ function ProfileCard() {
 
 				<InfoLabel title="Phone Number" value={person.phoneNumber} />
 				<h2>Credit Card Information</h2>
-				<InfoLabel title="Credit Card Number" />
-				<InfoLabel title="Credit Card CVV" />
-				<InfoLabel title="Credit Card Expiry" />
+				<InfoLabel title="Credit Card Issuer" value={person.cardIssuer} />
+				<InfoLabel title="Credit Card Number" value={person.cardNumber} />
+				<InfoLabel title="Credit Card CVV" value={person.cardCVV} />
+				<InfoLabel title="Credit Card Expiry" value={person.cardExpiry} />
 			</div>
 		</div>
 	);
