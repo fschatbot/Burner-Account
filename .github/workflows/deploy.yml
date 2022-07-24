@@ -27,7 +27,7 @@ jobs:
       - name: Create local changes
         run: |
           npm clean-install --no-audit --no-fund
-          npm run build
+          CI='' npm run build
       - name: Commit files
         run: |
           rm -rf .git
@@ -35,8 +35,8 @@ jobs:
           git init
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add index.html main.js style.prefixed.css -f
-          git commit -m "Upgraded till commit: ${{ github.event.commits[0].id }}"
+          git add . -f
+          git commit -m "${{ github.event.head_commit.message }} (${{ github.event.head_commit.id }}) [ci skip]"
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
