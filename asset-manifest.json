@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Burner-Account/static/css/main.69dc2434.css",
+    "main.js": "/Burner-Account/static/js/main.41091c9d.js",
+    "index.html": "/Burner-Account/index.html",
+    "main.69dc2434.css.map": "/Burner-Account/static/css/main.69dc2434.css.map",
+    "main.41091c9d.js.map": "/Burner-Account/static/js/main.41091c9d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.69dc2434.css",
+    "static/js/main.41091c9d.js"
+  ]
+}
