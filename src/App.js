@@ -1,6 +1,16 @@
 import "./index.css";
 import { faker } from "@faker-js/faker";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+
+function CopyText(text) {
+	console.log(text);
+	return () => {
+		navigator.clipboard.writeText(text);
+		toast.success("Copied to Clipboard");
+		console.log("Copied to Clipboard");
+	};
+}
 
 function getPersonInfo() {
 	let gender = faker.name.gender(true);
@@ -28,14 +38,16 @@ function InfoLabel({ title, value }) {
 	return (
 		<div className="Field-Container">
 			<label>{title}: </label>
-			<input type="text" className="field" disabled={true} defaultValue={value} />
+			<span onClick={CopyText(value)} className="field">
+				{value}
+			</span>
 		</div>
 	);
 }
 
-function Link({ link, text }) {
+function Link({ link, text, ...props }) {
 	return (
-		<a href={link} target="_blank" rel="noreferrer" className="links">
+		<a href={link} target="_blank" rel="noreferrer" className="links" {...props}>
 			{text}
 		</a>
 	);
@@ -54,7 +66,29 @@ function ProfileCard() {
 				<path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
 			</svg>
 			<div className="Avatar">
-				<img src={`https://i.pravatar.cc/300?u=${person.email}`} alt="avatar" />
+				<div className="avatar group relative">
+					<img src={`https://i.pravatar.cc/300?u=${person.email}`} alt="avatar" />
+					<div className="utils group-hover:opacity-100">
+						<div onClick={CopyText(`https://i.pravatar.cc/300?u=${person.email}`)}>
+							<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+								/>
+							</svg>
+						</div>
+						<Link
+							link={`https://i.pravatar.cc/300?u=${person.email}`}
+							text={
+								<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+									<path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+								</svg>
+							}
+							{...{ className: "no-custom", download: "Profile_Picture.png" }}
+						/>
+					</div>
+				</div>
 			</div>
 			<div className="Info">
 				<h2>Personal Info</h2>
