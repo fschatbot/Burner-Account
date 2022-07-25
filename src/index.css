@@ -4,6 +4,8 @@
 
 body {
 	@apply flex justify-center items-center min-h-screen;
+	background-color: #8ec5fc;
+	background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
 }
 
 .Card {
@@ -20,7 +22,7 @@ body {
 }
 
 .field {
-	@apply border-b-2 min-w-[7rem] w-fit italic;
+	@apply border-b-2 min-w-[7rem] w-fit italic bg-transparent;
 }
 
 .Info {
