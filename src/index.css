@@ -56,3 +56,17 @@ a.links {
 	@apply underline font-medium mx-1
 	text-sky-500 visited:text-purple-500;
 }
+
+/* Signature Code Starts from here!! */
+a[signature] {
+	@apply flex items-center gap-1
+		absolute top-4 left-4 text-white py-2.5 px-5
+		bg-white/10 border border-white/20 rounded-md backdrop-blur no-underline
+		hover:bg-white/20 hover:border-white/30;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	transition: background-color 500ms, border-color 500ms;
+}
+
+a[signature] svg {
+	@apply w-5 h-5;
+}
