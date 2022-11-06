@@ -1,10 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import { createRoot } from "react-dom/client";
 import App from "./App";
 import { Toaster } from "react-hot-toast";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
+const container = document.getElementById("root");
+createRoot(container).render(
 	<React.StrictMode>
 		<App />
 		<Toaster />
