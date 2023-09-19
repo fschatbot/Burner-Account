@@ -12,24 +12,21 @@ function CopyText(text) {
 }
 
 function getPersonInfo() {
-	let gender = faker.name.gender(true);
-	let firstName = faker.name.firstName(gender);
-	let secondName = faker.name
-		.findName(firstName, "")
-		.replace(firstName, "")
-		.replace(/^.*\.|Miss/, "")
-		.trim();
-	let fullName = `${gender === "Male" ? "Mr." : "Mrs."} ${firstName} ${secondName}`;
-	let email = faker.internet.email(firstName, secondName);
+	let sex = faker.person.sex();
+	let firstName = faker.person.firstName(sex);
+	let secondName = faker.person.lastName(sex);
+	let fullName = faker.person.fullName({ firstName, secondName, sex });
+	let email = faker.internet.email({ firstName, lastName: secondName });
 	let phoneNumber = faker.phone.number("+91 ### ### ####");
-	let SuggPass = faker.internet.password(20);
+	let SuggPass = faker.internet.password({ length: 20, memorable: true });
 
 	let cardIssuer = faker.finance.creditCardIssuer();
 	let cardNumber = faker.finance.creditCardNumber(cardIssuer);
 	let cardCVV = faker.finance.creditCardCVV();
-	let cardExpiry = "Lorem" || faker.finance.creditCardExpiry();
+	const CurrYear = new Date().getFullYear() % 100;
+	let cardExpiry = `${String(faker.number.int({ min: 1, max: 12 })).padStart(2, "0")}/${String(faker.number.int({ min: CurrYear + 1, max: CurrYear + 5 })).padStart(2, "0")}`;
 
-	return { gender, firstName, secondName, email, fullName, phoneNumber, SuggPass, cardIssuer, cardNumber, cardCVV, cardExpiry };
+	return { sex, firstName, secondName, email, fullName, phoneNumber, SuggPass, cardIssuer, cardNumber, cardCVV, cardExpiry };
 }
 
 function InfoLabel({ title, value }) {
@@ -93,7 +90,7 @@ function ProfileCard() {
 				<InfoLabel title="Full Name" value={person.fullName} />
 				<InfoLabel title="First Name" value={person.firstName} />
 				<InfoLabel title="Second Name" value={person.secondName} />
-				<InfoLabel title="Gender" value={person.gender} />
+				<InfoLabel title="Gender" value={person.sex} />
 				<h2>Email</h2>
 				<InfoLabel title="Email" value={person.email} />
 				<InfoLabel title="Suggested Password" value={person.SuggPass} />
