@@ -13,7 +13,11 @@ body {
 }
 
 .Avatar {
-	@apply w-full h-[7rem] mb-[5rem] bg-slate-600 relative;
+	@apply w-full h-[12rem] mb-[5rem] bg-slate-800 relative;
+	--color: rgba(114, 114, 114, 0.3);
+	background-image: linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent),
+		linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent);
+	background-size: 55px 55px;
 }
 
 .Avatar .avatar {
@@ -22,13 +26,13 @@ body {
 }
 
 .avatar .utils {
-	@apply opacity-0 bg-slate-700/70 absolute w-full h-full top-0 left-0 transition-opacity
+	@apply opacity-0 bg-slate-800/70 absolute w-full h-full top-0 left-0 transition-opacity
 	flex justify-center items-center gap-2;
 }
 
 .utils > div,
 .utils > a {
-	@apply bg-transparent hover:bg-slate-300/70 p-2 rounded-3xl text-white cursor-pointer;
+	@apply bg-transparent hover:bg-slate-400/70 p-2 rounded-3xl text-white cursor-pointer;
 }
 
 .field {
@@ -45,7 +49,7 @@ label {
 
 .refresh {
 	@apply w-6 h-6 z-10 text-white cursor-pointer
-	absolute right-3 top-3;
+	absolute right-4 top-4;
 }
 
 h2 {
@@ -61,7 +65,7 @@ a.links {
 a[signature] {
 	@apply flex items-center gap-1
 		absolute top-4 left-4 text-white py-2.5 px-5
-		bg-white/10 border border-white/20 rounded-md backdrop-blur no-underline
+		bg-white/10 border border-white/20 rounded-lg backdrop-blur no-underline
 		hover:bg-white/20 hover:border-white/30;
 	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 	transition: background-color 500ms, border-color 500ms;
