@@ -1,5 +1,5 @@
 import "./index.css";
-import { faker } from "@faker-js/faker";
+import { faker } from "@faker-js/faker/locale/en";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
